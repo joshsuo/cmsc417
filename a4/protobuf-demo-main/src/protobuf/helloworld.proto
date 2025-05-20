@@ -1,0 +1,54 @@
+// take a look at protobuf docs for more complete information:
+// https://developers.google.com/protocol-buffers/docs/reference/proto2-spec
+
+// you may (or may not) find `oneof` useful to use as a "tagged union"
+// we don't use `oneof` in this example, but take a look at:
+// https://protobuf.dev/reference/protobuf/proto2-spec/#oneof_and_oneof_field
+
+// protobuf is a serialization format that allows platform and language-agnostic message exchange
+// you compile the definition using protobuf compiler, which will generate bindings for your language
+// we use C in this demo
+
+// while proto3 is the latest, proto2 is still actively maintained
+// proto3 is more concise, but lacks required args, which will keep things simple
+syntax = "proto2";
+
+// enum that defines available strings
+//
+// note that `= 0` in enum values are used as their actual encoded values (like standard C enum)
+// rather than positional arguments like `message` types below
+enum DisplayString {
+	HELLO_WORLD = 0;
+	BYE_WORLD = 1;
+}
+
+// message client sends to server
+// requested_string is an enum, defined above
+// repeat_count is number of times server should repeat the string in its response
+// although it is defined as int32, both client and server will treat it as int8
+// this is because protobuf lacks a native int8 type
+// if repeat_count is <= 0, server will send an error
+// both fields must be present, otherwise server will send an error
+//
+// the `= 1` at the end marks the serialization order
+// this allows us to modify the message type without breaking backwards comptaibility
+// i.e. 
+//   say you have multiple services that use this protobuf definition
+//   and you want to modify the message definition
+//   you can add more fields without breaking the service compiled with old definition
+//   because old code will still know which field corresponds to which index
+//   and ignore the field indices that are not defined in the old code
+//   (for this reason, you must not remove / change fields correponding to some index if that index ever went live)
+message StringRepeatRequest {
+	required DisplayString requested_string = 1;
+	required int32 repeat_count = 2;
+}
+
+// message server sends to client as a response
+// if error is set, error_message is always populated, and repeated_string is empty
+// if error is not set, error_message is empty, and repeated_string is populated
+message StringRepeatResponse {
+	required bool error = 1;
+	optional string repeated_string = 2;
+	optional string error_message = 3;
+}

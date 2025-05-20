@@ -1,0 +1,14 @@
+2024-03-26T16:44:55.896Z [info] [proc] Executing command: cmake --version
+2024-03-26T16:44:56.721Z [info] [proc] Executing command: cmake -E capabilities
+2024-03-26T16:44:57.091Z [debug] [main] Safe constructing new CMakeProject instance
+2024-03-26T16:44:57.094Z [debug] [variant] Constructing VariantManager
+2024-03-26T16:44:57.105Z [debug] [main] Constructing new CMakeProject instance
+2024-03-26T16:44:57.107Z [debug] [main] Starting CMake Tools second-phase init
+2024-03-26T16:44:57.110Z [debug] [expand] expanding ${workspaceFolder}
+2024-03-26T16:44:57.740Z [info] [variant] Loaded new set of variants
+2024-03-26T16:44:57.801Z [debug] [kit] Not reading non-existent kits file: /home/student/.local/share/CMakeTools/cmake-tools-kits.json
+2024-03-26T16:44:57.802Z [debug] [expand] expanding cmake
+2024-03-26T16:44:57.837Z [debug] [kit] Not reading non-existent kits file: /home/student/.vscode/cmake-kits.json
+2024-03-26T16:44:57.841Z [debug] [expand] expanding /home/student
+2024-03-26T16:44:57.870Z [debug] [main] CMakeProject instance initialization complete.
+2024-03-27T15:14:23.535Z [debug] [extension] Deactivate CMakeTools

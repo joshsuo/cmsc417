@@ -1,0 +1,9 @@
+chord
+example_hash
+*.pb*
+*.o
+*.out
+*.vscode/*
+*.vscode-server/*
+*~
+[._]*.sw[a-p]
